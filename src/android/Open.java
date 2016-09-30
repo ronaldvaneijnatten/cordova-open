@@ -41,7 +41,7 @@ public class Open extends CordovaPlugin {
     } else  if (action.equals(DELETE_ACTION)) {
         try {
             String path = this.getTempFilepath(pathOrg);
-            if (!this.deleteFile(path)) callbackContext.error(4);
+            if (!this.deleteFile(path, callbackContext)) callbackContext.error(4);
         } catch (Exception e) {
             e.printStackTrace();
             callbackContext.error(5);
@@ -111,7 +111,7 @@ public class Open extends CordovaPlugin {
     return filePath2;
   }
 
-  private boolean deleteFile(String filePath) {
+  private boolean deleteFile(String filePath, CallbackContext callbackContext) {
     File file2 = new File(filePath.substring(7));
     if (file2.exists()) file2.delete();
     if (!file2.exists()) {
