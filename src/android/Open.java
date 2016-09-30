@@ -114,7 +114,11 @@ public class Open extends CordovaPlugin {
   private boolean deleteFile(String filePath) {
     File file2 = new File(filePath.substring(7));
     if (file2.exists()) file2.delete();
-    return !file2.exists();
+    if (!file2.exists()) {
+        callbackContext.success();
+        return true;
+    }
+    return false;
   }
 
   private String copyFile(String path) throws Exception {
