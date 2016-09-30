@@ -30,6 +30,26 @@ exports.open = function(uri, success, error, trustAllCertificates) {
 };
 
 /**
+ * delete
+ *
+ * @param {String} uri File URI
+ * @param {Function} success Success callback
+ * @param {Function} error Failure callback
+ * @returns {void}
+ */
+exports.delete = function(uri, success, error) {
+  if (!uri || arguments.length === 0) { return false; }
+
+    if (uri.match('http')) {
+        //
+    } else {
+        uri = encodeURI(uri);
+        exec(onSuccess.bind(this, uri, success),
+             onError.bind(this, error), 'Delete', 'delete', [uri]);
+    }
+};
+
+/**
  * downloadAndOpen
  *
  * @param {String} url File URI
